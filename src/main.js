@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import BaiduMap from 'vue-baidu-map'
+import VueSocketIO from 'vue-socket.io'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
@@ -32,7 +34,18 @@ if (process.env.NODE_ENV === 'production') {
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
+Vue.use(BaiduMap, {
+  ak: 'hw3DOH2vuBLHE304TthH1MLbfShHX2of'
+})
 
+Vue.use(new VueSocketIO({
+  debug: true,
+  connection: 'http://localhost:5000/',
+  vuex: {
+    mutationPrefix: 'SOCKET_',
+    actionPrefix: 'SOCKET_'
+  }
+}))
 Vue.config.productionTip = false
 
 new Vue({
